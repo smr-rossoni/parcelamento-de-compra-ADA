@@ -1,0 +1,13 @@
+{
+  "name": "parcelamento-de-compra",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "vitest",
+    "test:run": "vitest run"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "vitest": "^4.1.11"
+  }
+}
