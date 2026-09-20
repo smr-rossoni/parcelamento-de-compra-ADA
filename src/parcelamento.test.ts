@@ -9,11 +9,21 @@ describe('calcularParcelamento', () => {
         totalParcelas: 1,
       })
     })
-    it('divide o valor sem juros quando for 4x')
+    it('divide o valor sem juros quando for 4x', () => {
+      expect(calcularParcelamento(1000, 4)).toStrictEqual({
+        valorParcela: 250,
+        totalParcelas: 4,
+      })
+    })
   })
 
   describe('com juros', () => {
-    it('aplica 5% sobre o total quando for de 5x a 8x')
+    it('aplica 5% sobre o total quando for de 5x a 8x', () => {
+      expect(calcularParcelamento(1000, 5)).toStrictEqual({
+        valorParcela: 210,
+        totalParcelas: 5,
+      })
+    })
     it('aplica 8% sobre o total quando for de 9x a 12x')
     it('aplica 10% sobre o total quando for de 13x a 18x')
     it('aplica a faixa correta nos limites (4x, 5x, 8x, 9x, 12x, 13x)')
