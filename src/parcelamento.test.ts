@@ -24,8 +24,18 @@ describe('calcularParcelamento', () => {
         totalParcelas: 5,
       })
     })
-    it('aplica 8% sobre o total quando for de 9x a 12x')
-    it('aplica 10% sobre o total quando for de 13x a 18x')
+    it('aplica 8% sobre o total quando for de 9x a 12x', () => {
+      expect(calcularParcelamento(1000, 9)).toStrictEqual({
+        valorParcela: 120,
+        totalParcelas: 9,
+      })
+    })
+    it('aplica 10% sobre o total quando for de 13x a 18x', () => {
+      expect(calcularParcelamento(1000, 13)).toStrictEqual({
+        valorParcela: 84.62,
+        totalParcelas: 13,
+      })
+    })
     it('aplica a faixa correta nos limites (4x, 5x, 8x, 9x, 12x, 13x)')
   })
 
