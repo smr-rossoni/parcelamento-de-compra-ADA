@@ -36,17 +36,38 @@ describe('calcularParcelamento', () => {
         totalParcelas: 13,
       })
     })
-    it('aplica a faixa correta nos limites (4x, 5x, 8x, 9x, 12x, 13x)')
+    it('aplica a faixa correta nos limites (4x, 5x, 8x, 9x, 12x, 13x)', () => {
+      expect(calcularParcelamento(1000, 4).valorParcela).toBe(250)
+      expect(calcularParcelamento(1000, 5).valorParcela).toBe(210)
+      expect(calcularParcelamento(1000, 8).valorParcela).toBe(131.25)
+      expect(calcularParcelamento(1000, 9).valorParcela).toBe(120)
+      expect(calcularParcelamento(1000, 12).valorParcela).toBe(90)
+      expect(calcularParcelamento(1000, 13).valorParcela).toBe(84.62)
+    })
   })
 
   describe('arredondamento', () => {
-    it('arredonda o valor da parcela para 2 casas decimais')
+    it('arredonda o valor da parcela para 2 casas decimais', () => {
+      expect(calcularParcelamento(100, 3)).toStrictEqual({
+        valorParcela: 33.33,
+        totalParcelas: 3,
+      })
+    })
   })
 
   describe('validações', () => {
-    it('lança erro quando o número de parcelas for menor que 1')
-    it('lança erro quando o número de parcelas for maior que 18')
-    it('lança erro quando o número de parcelas não for inteiro')
-    it('lança erro quando o valor da compra for zero ou negativo')
+    it('lança erro quando o número de parcelas for menor que 1', () => {
+      expect(() => calcularParcelamento(1000, 0)).toThrow('Número de parcelas deve ser um inteiro entre 1 e 18')
+    })
+    it('lança erro quando o número de parcelas for maior que 18', () => {
+      expect(() => calcularParcelamento(1000, 19)).toThrow('Número de parcelas deve ser um inteiro entre 1 e 18')
+    })
+    it('lança erro quando o número de parcelas não for inteiro', () => {
+      expect(() => calcularParcelamento(1000, 2.5)).toThrow('Número de parcelas deve ser um inteiro entre 1 e 18')
+    })
+    it('lança erro quando o valor da compra for zero ou negativo', () => {
+      expect(() => calcularParcelamento(0, 3)).toThrow('Valor da compra deve ser maior que zero')
+      expect(() => calcularParcelamento(-50, 3)).toThrow('Valor da compra deve ser maior que zero')
+    })
   })
 })
